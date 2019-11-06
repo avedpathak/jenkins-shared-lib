@@ -2,9 +2,9 @@ def call(){
 
 pipeline {
 
-   environment {
-		config = readYaml(file: "pipeline.yaml")
-   }
+   options{
+      buildDiscarder(logRotator(numToKeepStr: '2', artifactNumToKeepStr: '2'))
+    }
    agent any
    
    parameters{
@@ -32,6 +32,9 @@ pipeline {
 			 }
         }
          steps {
+		 script{            
+		   config = readYaml(file: "pipeline.yaml")
+		 }
             echo 'Building the application'
 			sh "dotnet build ${config.projectPath}"
          }
