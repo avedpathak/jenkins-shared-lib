@@ -5,7 +5,11 @@ pipeline {
    options{
       buildDiscarder(logRotator(numToKeepStr: '2', artifactNumToKeepStr: '2'))
     }
-   agent any
+   agent {
+      node{
+        label 'master'
+      }
+    }
    
    parameters{
       choice(
@@ -36,7 +40,7 @@ pipeline {
 		   config = readYaml(file: "pipeline.yaml")
 		 }
             echo 'Building the application'
-			echo 'building project ${config.projectPath}'
+			echo "building project ${config.projectPath}"
          }
       }
 	  stage('QA') {
