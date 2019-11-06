@@ -36,7 +36,7 @@ pipeline {
 		   config = readYaml(file: "pipeline.yaml")
 		 }
             echo 'Building the application'
-			sh "dotnet build ${config.projectPath}"
+			echo 'building project ${config.projectPath}'
          }
       }
 	  stage('QA') {
