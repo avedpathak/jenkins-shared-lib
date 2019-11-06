@@ -3,7 +3,7 @@ def call(){
 pipeline {
 
    environment {
-		config = readYaml(file: "./pipeline.yaml")
+		config = readYaml(file: "pipeline.yaml")
    }
    agent any
    
